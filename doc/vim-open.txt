@@ -1,0 +1,67 @@
+==============================================================================
+CONTENTS                                      *vim-open* *vim-open-contents*
+
+    Installation...........................: |vim-open-installation|
+    Usage..................................: |vim-open-usage|
+    Settings..................................: |vim-open-settings|
+
+==============================================================================
+INSTALLATION                                           *vim-open-installation*
+
+Vundle (http://github.com/gmarik/vundle)
+include the following line in your .vimrc
+>
+    Bundle 'sjurgemeyer/vim-open'
+<
+
+Then, run
+>
+    :BundleInstall
+<
+
+Pathogen (https://github.com/tpope/vim-pathogen)
+clone the plugin's git repository
+>
+    git clone git://github.com/sjurgemeyer/vim-open.git ~/.vim/bundle/vim-open
+<
+If your vim configuration is under git version control, you could also set up
+the repository as a submodule, which would allow you to update more easily.
+The command is (provided you're in ~/.vim):
+>
+    git submodule add git://github.com/sjurgemeyer/vim-open.git bundle/vim-open
+<
+
+You can also just copy the files the old fashioned way, but I don't condone that type of behavior
+
+==============================================================================
+USAGE                                                         *vim-open-usage*
+With the cursor on a word, use C-y to search for a file with that name in the current working directory.
+Since some languages have a convention of a variable name as the classname in lowercase, this also
+offers the option of using C-u to uppercase the word under the cursor before searching.
+
+If multiple results are found, the plugin will offer a list of options.
+
+
+==============================================================================
+SETTINGS                                                *vim-open-settings*
+
+
+------------------------------------------------------------------------------
+g:vim_open_map_keys										*vim_open_map_keys*
+
+Allow vim-open to automatically map keys
+
+Default: 1
+------------------------------------------------------------------------------
+g:vim_open_shortcut										*vim_open_shortcut*
+
+The keyboard shortcut for vim-open
+
+Default: <leader>y
+
+------------------------------------------------------------------------------
+g:vim_open_uppercase_shortcut							*vim_open_uppercase_shortcut*
+
+The keyboard shortcut for vim-open with uppercase
+
+Default: <leader>u
