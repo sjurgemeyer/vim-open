@@ -41,7 +41,7 @@ function! OpenFileUnderCursor(filename)
             let index += 1
         endwhile
         let chosenIndex = input(message . 'Which file?: ')
-        if chosenIndex > 0 && chosenIndex < len(paths)
+        if chosenIndex >= 0 && chosenIndex < len(paths)
             silent execute "edit " . paths[chosenIndex]
         endif
         let &cmdheight = originalCmdHeight
