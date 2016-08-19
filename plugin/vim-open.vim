@@ -28,14 +28,14 @@ endif
 
 "Open file under cursor
 if (g:vim_open_map_keys)
-    execute "nnoremap"  g:vim_open_shortcut ':call OpenFile(expand("<cword>"))<CR>'
-    execute "nnoremap"  g:vim_open_test_shortcut ':call OpenTest()<CR>'
+    execute "nnoremap"  g:vim_open_shortcut ':call VimOpenOpenFile(expand("<cword>"))<CR>'
+    execute "nnoremap"  g:vim_open_test_shortcut ':call VimOpenOpenTest()<CR>'
     execute "nnoremap"  g:vim_open_uppercase_shortcut ':call OpenFileUpperCase(expand("<cword>"))<CR>'
     execute "nnoremap"  g:vim_open_split_shortcut ':call SplitFileUpperCase(expand("<cword>"))<CR>'
     execute "nnoremap"  g:vim_open_vertical_split_shortcut ':call VerticalSplitFileUpperCase(expand("<cword>"))<CR>'
 endif
 
-function! OpenFile(filename)
+function! VimOpenOpenFile(filename)
 	call OperateOnFile("edit", a:filename, 0)
 endfunction
 
@@ -43,7 +43,7 @@ function! OpenFileUpperCase(filename)
     call OperateOnFile("edit", a:filename, 1)
 endfunction
 
-function! OpenTest()
+function! VimOpenOpenTest()
     call OperateOnTest("edit")
 endfunction
 
@@ -60,11 +60,11 @@ function! VerticalSplitFileUpperCase(filename)
 endfunction
 
 function! OperateOnFile(command, filename, uppercase)
-	let paths = GetPaths(a:filename, a:uppercase)
+	let paths = VimOpenGetPaths(a:filename, a:uppercase)
 	call OperateOnFilePaths(a:command, paths, a:uppercase)
 endfunction
 
-function GetPaths(filename, uppercase)
+function VimOpenGetPaths(filename, uppercase)
 	if (a:uppercase)
 		let fname = toupper(strpart(a:filename, 0, 1)) . strpart(a:filename, 1, strlen(a:filename))
 	else
@@ -126,7 +126,7 @@ function! OperateOnTest(command)
 		let paths = []
 		for suffix in g:vim_open_test_suffixes
 			let filename = filename . suffix
-			let newpaths = GetPaths(filename, 0)
+			let newpaths = VimOpenGetPaths(filename, 0)
 			let paths = paths + newpaths
 		endfor
 		call OperateOnFilePaths(a:command, paths, 0)
