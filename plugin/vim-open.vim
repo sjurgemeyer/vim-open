@@ -84,7 +84,7 @@ function! OperateOnFilePaths(command, paths, uppercase)
         return
     endif
     if len(paths) == 1
-		let chosenIndex = 0
+		let chosenIndex = 1
     else
         call inputsave()
         let originalCmdHeight = &cmdheight
@@ -92,15 +92,15 @@ function! OperateOnFilePaths(command, paths, uppercase)
         let index = 0
         let message = ""
         while index < len(paths)
-            let message = message . "[" . index . "] " . paths[index] . "\n"
+            let message = message . "[" . (index + 1) . "] " . paths[index] . "\n"
             let index += 1
         endwhile
         let chosenIndex = input(message . 'Which file?: ')
         let &cmdheight = originalCmdHeight
         call inputrestore()
     endif
-	if chosenIndex >= 0 && chosenIndex < len(paths)
-		silent execute a:command . " " . paths[chosenIndex]
+	if chosenIndex > 0 && chosenIndex <= len(paths)
+		silent execute a:command . " " . paths[chosenIndex-1]
 	endif
 
 endfunction
