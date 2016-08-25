@@ -64,7 +64,7 @@ function! OperateOnFile(command, filename, uppercase)
 	call OperateOnFilePaths(a:command, paths, a:uppercase)
 endfunction
 
-function VimOpenGetPaths(filename, uppercase)
+function! VimOpenGetPaths(filename, uppercase)
 	if (a:uppercase)
 		let fname = toupper(strpart(a:filename, 0, 1)) . strpart(a:filename, 1, strlen(a:filename))
 	else
