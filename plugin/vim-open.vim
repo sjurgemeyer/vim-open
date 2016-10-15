@@ -80,7 +80,7 @@ function! OperateOnFilePaths(command, paths, uppercase)
 
 	let paths = a:paths
     if len(paths) == 0
-        echoe "No file file for search string " . searchString
+        echoe "No file found"
         return
     endif
     if len(paths) == 1
